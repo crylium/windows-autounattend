@@ -20,3 +20,22 @@ Set "Source" as `C:\SRC\`. Set "Destination" as `C:\OUTPUT\win2k16_autounattend.
 Use `boot\etfsboot.com` file from the DVD for "Boot Image".
 
 Set "Sectors To Load" to 8 when setting up a Windows Server 2016.
+
+## Windows Server Management with Ansible
+
+Ansible can manage Windows versions under current support from Microsoft. Unlike Linux hosts that use SSH by default, Windows hosts are configured with WinRM.
+
+Open PowerShell as Administrator, and run the following commands to configure CredSSP authentication:
+
+```
+$url = "https://raw.githubusercontent.com/crylium/windows-autounattend/master/ConfigureRemotingForAnsibleCredSSP.ps1"
+$file = "$env:temp\ConfigureRemotingForAnsible.ps1"
+(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
+powershell.exe -ExecutionPolicy ByPass -File $file
+
+```
+Verify that the Basic authentication is disabled, and that CredSSP is enabled:
+```
+winrm get winrm/config/Service
+winrm get winrm/config/Winrs
+```
