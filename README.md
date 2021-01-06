@@ -28,7 +28,7 @@ Ansible can manage Windows versions under current support from Microsoft. Unlike
 Open PowerShell as Administrator, and run the following commands to configure CredSSP authentication:
 
 ```
-$url = "https://raw.githubusercontent.com/crylium/windows-autounattend/master/ConfigureRemotingForAnsibleCredSSP.ps1"
+$url = "https://raw.githubusercontent.com/lisenet/windows-autounattend/master/ConfigureRemotingForAnsibleCredSSP.ps1"
 $file = "$env:temp\ConfigureRemotingForAnsible.ps1"
 (New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
 powershell.exe -ExecutionPolicy ByPass -File $file
